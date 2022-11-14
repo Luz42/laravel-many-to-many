@@ -20,3 +20,13 @@ Route::get('/', function () {
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
+
+    //viene specificata una nuova rotta per l'amministratore loggato
+    //le rotte avranno tutte prefisso /admin
+Route::middleware('auth')
+    ->namespace('Admin')
+    ->name('admin.')
+    ->prefix('admin')
+    ->group(function () {
+        Route::get('/', 'HomeController@index')->name('home');
+});
