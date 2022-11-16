@@ -20,6 +20,17 @@
         @enderror
     </div>
     <div>
+        <label for="category_id">{{__('Categoria')}}</label>
+        <select name="category_id">
+            <option value="">Nessuna</option>
+            @foreach ($categories as $category)
+                <option @if($category->id == old('category_id', $post->category_id)) selected @endif value="{{$category->id}}">
+                    {{$category->name}}
+                </option>
+            @endforeach
+        </select>
+    </div>
+    <div>
         <input type="submit" value="{{__('Aggiorna')}}">
     </div>
 </form>
