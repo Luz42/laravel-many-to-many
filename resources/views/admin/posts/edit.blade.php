@@ -1,0 +1,21 @@
+@extends('layouts.dashboard')
+
+@section('content')
+    
+<form action="{{route('admin.posts.update', $post->id)}}" method="post">
+    @csrf
+    @method('PATCH')
+    <div>
+        <label for="title">{{__('Titolo')}}</label>
+        <input name="title" type="text" required value="{{old('title', $post->title)}}">
+    </div>
+    <div>
+        <label for="content">{{__('Contenuto')}}</label>
+        <textarea name="content" cols="20" rows="5" required>{{old('content',$post->content)}}</textarea>
+    </div>
+    <div>
+        <input type="submit" value="{{__('Aggiorna')}}">
+    </div>
+</form>
+
+@endsection

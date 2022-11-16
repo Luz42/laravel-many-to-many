@@ -13,7 +13,7 @@
             <textarea name="content" cols="20" rows="5" required>{{old('content','')}}</textarea>
         </div>
         <div>
-            <input type="submit" value="Crea">
+            <input type="submit" value="{{__('Crea')}}">
         </div>
     </form>
 
