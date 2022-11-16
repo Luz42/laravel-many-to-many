@@ -3,7 +3,9 @@
 @section('content')
     <h2>{{$post->title}}</h2>
     <h4>{{$post->content}}</h4>
-    <h4>{{$post->category->name}}</h4>
+    @if ($post->category)
+        <p>{{$post->category->name}}</p>
+    @endif
 
     <a href="{{route('admin.posts.edit', $post->id)}}">{{__('Modifica')}}</a>
     <form action="{{route('admin.posts.destroy', $post->id)}}" method="post">

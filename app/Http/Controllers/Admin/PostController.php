@@ -64,10 +64,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post, Category $category)
+    public function show(Post $post)
     {
         //
-        return view('admin.posts.show', compact('post', 'category'));
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
