@@ -46,7 +46,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|min:5|max:255',
             'content' => 'required',
-            'category_id' => 'nullable|exists:categories, id'
+            'category_id' => 'nullable|exists:categories,id'
         ]);
         $form_data = $request->all();
         $post = new Post();
@@ -64,10 +64,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Post $post, Category $category)
     {
         //
-        return view('admin.posts.show', compact('post'));
+        return view('admin.posts.show', compact('post', 'category'));
     }
 
     /**
