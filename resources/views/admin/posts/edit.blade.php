@@ -17,5 +17,6 @@
         <input type="submit" value="{{__('Aggiorna')}}">
     </div>
 </form>
+<a href="{{route('admin.posts.show', $post->id)}}">{{__('Annulla')}}</a>
 
 @endsection
