@@ -6,7 +6,12 @@
     @if ($post->category)
         <p>{{$post->category->name}}</p>
     @endif
-
+    <div>
+        <h6 style="display: inline-block">Tags:</h6>
+        @foreach ($post->tag as $tag)
+            <span>{{__($tag->name)}}</span>
+        @endforeach
+    </div>
     <a href="{{route('admin.posts.edit', $post->id)}}">{{__('Modifica')}}</a>
     <form action="{{route('admin.posts.destroy', $post->id)}}" method="post">
         @csrf
