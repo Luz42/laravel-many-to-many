@@ -91,7 +91,7 @@ class PostController extends Controller
         //
         $categories = Category::all();
         $tags = Tag::all();
-        return view('admin.posts.edit', compact('post','categories'));
+        return view('admin.posts.edit', compact('post','categories', 'tags'));
     }
 
     /**
@@ -109,13 +109,16 @@ class PostController extends Controller
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
             'tags'=> 'exists:tags,id'
-
-
         ]);
         $form_data = $request->all();
         if($post->title != $form_data['title']){
             $slug = $this->getSlug($form_data['title']);
             $form_data['slug'] = $slug;
+        }
+        if(array_key_exists('tags', $form_data)){
+            $post->tag()->sync($form_data['tags']);
+        }else{
+            $post->tag()->sync([]);
         }
         $post->update($form_data);
         return redirect()->route('admin.posts.show', $post->id);
