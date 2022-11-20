@@ -132,7 +132,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        //IN UNA RELAZIONE MOLTI A MOLTI, AL MOMENTO DELLA CANCELLAZIONE DELL'ELEMENTO, BISOGNA PRIMA AZZERARE LE ASSOCIAZIONI
+        $post->tag()->sync([]);
+        
         $post->delete();
         return redirect()->route('admin.posts.index');
     }
